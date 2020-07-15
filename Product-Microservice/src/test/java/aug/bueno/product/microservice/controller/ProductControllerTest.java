@@ -98,13 +98,13 @@ public class ProductControllerTest {
     @DisplayName("PUT /product/1 - success")
     void testProductPutSuccess() throws Exception {
         ProductDTO putProduct = new ProductDTO("Product Name", 10);
-        ProductDTO mockProduct = new ProductDTO(1, 1,"Product Name", 10);
+        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
 
         doReturn(true).when(productService).update(any());
 
-        mockMvc.perform(put("/product/{id}",1)
+        mockMvc.perform(put("/product/{id}", 1)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.IF_MATCH, 1)
                 .content(mapper.writeValueAsString(putProduct)))
@@ -126,7 +126,7 @@ public class ProductControllerTest {
     @DisplayName("PUT /product/1 - Version Mismatch")
     void testProductPutVersionMismatch() throws Exception {
         ProductDTO putProduct = new ProductDTO("Product Name", 10);
-        ProductDTO mockProduct = new ProductDTO(1, 2,"Product Name", 10);
+        ProductDTO mockProduct = new ProductDTO(1, 2, "Product Name", 10);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
 
@@ -138,6 +138,62 @@ public class ProductControllerTest {
                 .content(mapper.writeValueAsString(putProduct)))
 
                 .andExpect(status().isConflict());
+
+    }
+
+    @Test
+    void testProductPutNotFound() throws Exception {
+        ProductDTO putProduct = new ProductDTO("Product Name", 10);
+        doReturn(Optional.empty()).when(productService).findById(1);
+
+        mockMvc.perform(
+                put("/product/{id}", 1)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header(HttpHeaders.IF_MATCH, 1)
+                        .content(mapper.writeValueAsString(putProduct))
+        ).andExpect(status().isNotFound());
+
+
+    }
+
+    @Test
+    @DisplayName("DELETE /product/1 - Success")
+    void testProductDeleteSuccess() throws Exception {
+        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+
+        doReturn(Optional.of(mockProduct)).when(productService).findById(1);
+        doReturn(true).when(productService).delete(1);
+
+        mockMvc.perform(
+                delete("/product/{id}", 1)
+        ).andExpect(status().isOk());
+
+
+    }
+
+    @Test
+    @DisplayName("DELETE /product/1 - Not Found")
+    void testProductDeleteNotFoundProduct() throws Exception {
+        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        doReturn(Optional.empty()).when(productService).findById(1);
+
+        mockMvc.perform(
+                delete("/product/{id}", 1)
+        ).andExpect(status().isNotFound());
+    }
+
+    @Test
+    @DisplayName("DELETE /product/1 - Failure")
+    void testProductDeleteFailure() throws Exception {
+        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+
+        doReturn(Optional.of(mockProduct)).when(productService).findById(1);
+        doReturn(false).when(productService).delete(1);
+
+        mockMvc.perform(
+                delete("/product/{id}", 1)
+        ).andExpect(status().isInternalServerError());
+
 
     }
 }

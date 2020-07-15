@@ -25,7 +25,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    public ResponseEntity<?> getProduct(@PathVariable Integer id) {
+    public ResponseEntity<?> getProduct(@PathVariable Long id) {
 
         return productService.findById(id)
                 .map(product -> {
@@ -63,7 +63,7 @@ public class ProductController {
     @PutMapping("/product/{id}")
     public ResponseEntity<?> updateProduct(
             @RequestBody ProductDTO productUpdatedDTO,
-            @PathVariable Integer id,
+            @PathVariable Long id,
             @RequestHeader("If-Match") Integer ifMatch
     ) {
         LOGGER.info("Updating product with id: {}, name: {}, quantity: {}", id, productUpdatedDTO.getName(), productUpdatedDTO.getQuantity());
@@ -88,6 +88,21 @@ public class ProductController {
                         .body(p);
             } else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 
+
+        }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/product/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        LOGGER.info("Deleting Product with id {}", id);
+
+        Optional<ProductDTO> existingProduct = productService.findById(id);
+
+        return existingProduct.map(p -> {
+
+            if (productService.delete(p.getId())) {
+                return ResponseEntity.ok().build();
+            } else return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
 
         }).orElse(ResponseEntity.notFound().build());
     }
