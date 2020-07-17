@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Data
@@ -15,6 +16,7 @@ import javax.persistence.Entity;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Product {
 
+    @Id
     long id;
 
     String name;

@@ -1,5 +1,6 @@
 package aug.bueno.product.microservice.controller;
 
+import aug.bueno.product.microservice.domain.Product;
 import aug.bueno.product.microservice.domain.dto.ProductDTO;
 import aug.bueno.product.microservice.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,8 +22,14 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doReturn;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -46,7 +53,7 @@ public class ProductControllerTest {
     @DisplayName("GET /product/1 - Found")
     void testGetProductByIdPFound() throws Exception {
 
-        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 1);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
 
@@ -74,7 +81,7 @@ public class ProductControllerTest {
     @DisplayName("POST /product - Success")
     void testCreateProduct() throws Exception {
         ProductDTO postProduct = new ProductDTO("Product Name", 10);
-        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 1);
 
         doReturn(mockProduct).when(productService).save(any());
 
@@ -98,7 +105,7 @@ public class ProductControllerTest {
     @DisplayName("PUT /product/1 - success")
     void testProductPutSuccess() throws Exception {
         ProductDTO putProduct = new ProductDTO("Product Name", 10);
-        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 1);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
 
@@ -126,7 +133,7 @@ public class ProductControllerTest {
     @DisplayName("PUT /product/1 - Version Mismatch")
     void testProductPutVersionMismatch() throws Exception {
         ProductDTO putProduct = new ProductDTO("Product Name", 10);
-        ProductDTO mockProduct = new ProductDTO(1, 2, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 2);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
 
@@ -159,7 +166,7 @@ public class ProductControllerTest {
     @Test
     @DisplayName("DELETE /product/1 - Success")
     void testProductDeleteSuccess() throws Exception {
-        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 1);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
         doReturn(true).when(productService).delete(1);
@@ -174,7 +181,7 @@ public class ProductControllerTest {
     @Test
     @DisplayName("DELETE /product/1 - Not Found")
     void testProductDeleteNotFoundProduct() throws Exception {
-        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 1);
         doReturn(Optional.empty()).when(productService).findById(1);
 
         mockMvc.perform(
@@ -185,7 +192,7 @@ public class ProductControllerTest {
     @Test
     @DisplayName("DELETE /product/1 - Failure")
     void testProductDeleteFailure() throws Exception {
-        ProductDTO mockProduct = new ProductDTO(1, 1, "Product Name", 10);
+        Product mockProduct = new Product(1, "Product Name", 10, 1);
 
         doReturn(Optional.of(mockProduct)).when(productService).findById(1);
         doReturn(false).when(productService).delete(1);

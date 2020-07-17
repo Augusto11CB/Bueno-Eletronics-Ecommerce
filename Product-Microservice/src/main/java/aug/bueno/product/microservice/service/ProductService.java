@@ -1,18 +1,18 @@
 package aug.bueno.product.microservice.service;
 
+import aug.bueno.product.microservice.domain.Product;
 
-import aug.bueno.product.microservice.domain.dto.ProductDTO;
-
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductService {
-    Optional<ProductDTO> findById(long id);
+    Optional<Product> findById(long id);
 
-    Iterable<ProductDTO> findAll();
+    List<Product> findAll();
 
-    ProductDTO save(ProductDTO productDTO);
+    Product save(Product product);
 
-    boolean update(ProductDTO productDTO);
+    boolean update(Product product);
 
     boolean delete(long id);
 }
