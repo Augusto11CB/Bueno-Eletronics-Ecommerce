@@ -23,6 +23,11 @@ public class Review {
 
     private List<ReviewEntry> entries = new ArrayList<>();
 
+    public Review(Long productId, Integer version) {
+        this.productId = productId;
+        this.version = version;
+    }
+
     public Review(Long productId) {
         this.productId = productId;
     }

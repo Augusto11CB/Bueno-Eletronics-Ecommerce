@@ -50,9 +50,9 @@ public class ReviewControllerTest {
 
     @Test
     void testGetReviewByIdFound() throws Exception {
-        Review mockReview = new Review("reviewId", 1L, 1);
-        Date now = new Date();
-        ReviewEntry reviewEntry = new ReviewEntry("test-user", now, "Nice");
+        final Review mockReview = new Review("reviewId", 1L, 1);
+        final Date now = new Date();
+        final ReviewEntry reviewEntry = new ReviewEntry("test-user", now, "Nice");
         mockReview.getEntries().add(reviewEntry);
 
         doReturn(Optional.of(mockReview)).when(service).findById(mockReview.getId());
