@@ -25,7 +25,8 @@ ext {
 dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 //    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 //    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 //    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -57,6 +58,7 @@ dependencies {
     }
 
     testImplementation 'org.hamcrest:hamcrest-library:2.2'
+    testImplementation 'com.github.database-rider:rider-junit5:1.15.3'
 
 //    testImplementation 'io.projectreactor:reactor-test'
 //    testImplementation 'org.springframework.batch:spring-batch-test'
