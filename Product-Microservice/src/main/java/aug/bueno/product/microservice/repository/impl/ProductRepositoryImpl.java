@@ -1,6 +1,5 @@
 package aug.bueno.product.microservice.repository.impl;
 
-import aug.bueno.product.microservice.controller.ProductController;
 import aug.bueno.product.microservice.domain.Product;
 import aug.bueno.product.microservice.repository.ProductRepository;
 import org.apache.logging.log4j.LogManager;
@@ -19,7 +18,7 @@ import java.util.Optional;
 @Component
 public class ProductRepositoryImpl implements ProductRepository {
 
-    private static final Logger LOGGER = LogManager.getLogger(ProductController.class);
+    private static final Logger LOGGER = LogManager.getLogger(ProductRepositoryImpl.class);
 
     private final JdbcTemplate jdbcTemplate;
 
