@@ -23,4 +23,8 @@ public class Product {
 
     Integer version;
 
+    public Product(String name, Integer quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
 }

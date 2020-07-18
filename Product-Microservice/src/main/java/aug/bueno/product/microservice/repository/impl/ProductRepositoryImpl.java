@@ -33,7 +33,7 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> findById(Integer id) {
+    public Optional<Product> findById(Long id) {
 
         try {
             Product product = jdbcTemplate.queryForObject(
@@ -77,7 +77,6 @@ public class ProductRepositoryImpl implements ProductRepository {
                 "UPDATE products SET name = ?, quantity = ?, version = ? WHERE id = ?",
                 product.getName(),
                 product.getQuantity(),
-                product.getVersion(),
                 product.getVersion(),
                 product.getId()) == 1;
     }
