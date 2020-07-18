@@ -1,19 +1,15 @@
 package aug.bueno.repository;
 
+import aug.bueno.custom.MongoDataFile;
+import aug.bueno.custom.junit.extension.MongoSpringCustomExtension;
 import aug.bueno.domain.Review;
 import aug.bueno.domain.ReviewEntry;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataMongoTest // -> Loads an embedded MongoDB instance
+@ExtendWith(MongoSpringCustomExtension.class)
 public class ReviewRepositoryTest {
 
-    private static File SAMPLE_JSON = Paths.get("src", "test", "resources", "data", "sample.json").toFile();
-
-    private final ObjectMapper mapper = new ObjectMapper();
+    // v1
+//    private static File SAMPLE_JSON = Paths.get("src", "test", "resources", "data", "sample.json").toFile();
+    // v1
+//    private final ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
     private MongoTemplate mongoTemplate;
@@ -35,26 +33,35 @@ public class ReviewRepositoryTest {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @BeforeEach
-    void beforeEach() throws IOException {
-        Review[] objects = mapper.readValue(SAMPLE_JSON, Review[].class);
+    // v1
+//    @BeforeEach
+//    void beforeEach() throws IOException {
+//        Review[] objects = mapper.readValue(SAMPLE_JSON, Review[].class);
+//
+//        //Load each review into MongoDB
+//        Arrays.stream(objects).forEach(mongoTemplate::save);
+//    }
 
-        //Load each review into MongoDB
-        Arrays.stream(objects).forEach(mongoTemplate::save);
-    }
+    // v1
+//    @AfterEach
+//    void afterEach() {
+//        mongoTemplate.dropCollection("Reviews");
+//    }
 
-    @AfterEach
-    void afterEach() {
-        mongoTemplate.dropCollection("Reviews");
+
+    public MongoTemplate getMongoTemplate() {
+        return mongoTemplate;
     }
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void testFindAll() {
         List<Review> reviews = reviewRepository.findAll();
         assertEquals(2, reviews.size());
     }
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void testFindByIdOK() {
         Optional<Review> reviews = reviewRepository.findById("1");
         assertTrue(reviews.isPresent());
@@ -67,24 +74,28 @@ public class ReviewRepositoryTest {
     }
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void testFindByIdFailure() {
         Optional<Review> review = reviewRepository.findById("99");
         assertFalse(review.isPresent());
     }
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void testFindByProductIdSuccess() {
         Optional<Review> review = reviewRepository.findByProductId(1L);
         assertTrue(review.isPresent());
     }
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void testFindByProductIdFailure() {
         Optional<Review> review = reviewRepository.findByProductId(99L);
         assertFalse(review.isPresent());
     }
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void testSave() {
         final Review review = new Review(10L, 1);
         final Date now = new Date();
@@ -109,6 +120,7 @@ public class ReviewRepositoryTest {
     // TODO update
 
     @Test
+    @MongoDataFile(value = "sample.json", classType = Review.class, collectionName = "Reviews")
     void deleteTest() {
         reviewRepository.deleteById("2");
 
