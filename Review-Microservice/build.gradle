@@ -55,6 +55,9 @@ dependencies {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
+    testImplementation 'org.hamcrest:hamcrest-library:2.2'
+//    testImplementation 'com.github.database-rider:rider-junit5:1.15.3'
+
     testImplementation 'io.projectreactor:reactor-test'
 //    testImplementation 'org.springframework.batch:spring-batch-test'
 //    testImplementation 'org.springframework.security:spring-security-test'
