@@ -1,7 +1,7 @@
-package aug.bueno.controller;
+package aug.bueno.inventory.microservice.controller;
 
-import aug.bueno.model.PurchaseRecord;
-import aug.bueno.service.InventoryService;
+import aug.bueno.inventory.microservice.model.PurchaseRecord;
+import aug.bueno.inventory.microservice.service.InventoryService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +29,7 @@ public class InventoryController {
                     try {
                         return ResponseEntity
                                 .ok()
-                                .location(new URI("/inventory" + inventoryRecord.getProductId()))
+                                .location(new URI("/inventory/" + inventoryRecord.getProductId()))
                                 .body(inventoryRecord);
                     } catch (URISyntaxException e) {
                         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -44,7 +44,7 @@ public class InventoryController {
                     try {
                         return ResponseEntity
                                 .ok()
-                                .location(new URI("/inventory" + inventoryRecord.getProductId()))
+                                .location(new URI("/inventory/" + inventoryRecord.getProductId()))
                                 .body(inventoryRecord);
                     } catch (URISyntaxException e) {
                         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

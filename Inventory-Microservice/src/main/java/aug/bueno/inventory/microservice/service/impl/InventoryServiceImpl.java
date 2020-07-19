@@ -1,8 +1,8 @@
-package aug.bueno.service.impl;
+package aug.bueno.inventory.microservice.service.impl;
 
-import aug.bueno.model.InventoryRecord;
-import aug.bueno.model.PurchaseRecord;
-import aug.bueno.service.InventoryService;
+import aug.bueno.inventory.microservice.model.InventoryRecord;
+import aug.bueno.inventory.microservice.model.PurchaseRecord;
+import aug.bueno.inventory.microservice.service.InventoryService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;

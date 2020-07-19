@@ -1,6 +1,6 @@
-package aug.bueno.service;
+package aug.bueno.inventory.microservice.service;
 
-import aug.bueno.model.InventoryRecord;
+import aug.bueno.inventory.microservice.model.InventoryRecord;
 
 import java.util.Optional;
 

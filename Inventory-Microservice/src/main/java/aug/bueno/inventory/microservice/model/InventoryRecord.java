@@ -1,4 +1,4 @@
-package aug.bueno.model;
+package aug.bueno.inventory.microservice.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
