@@ -1,8 +1,8 @@
-/*
-package aug.bueno.product.microservice.service;
+package aug.bueno.product.microservice.unit.test.service;
 
 import aug.bueno.product.microservice.domain.Product;
 import aug.bueno.product.microservice.repository.ProductRepository;
+import aug.bueno.product.microservice.service.ProductService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -91,4 +91,4 @@ public class ProductServiceTest {
 
 
 }
-*/
+

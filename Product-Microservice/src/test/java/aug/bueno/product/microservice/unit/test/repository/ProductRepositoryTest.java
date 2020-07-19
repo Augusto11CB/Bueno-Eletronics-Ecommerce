@@ -1,6 +1,7 @@
-package aug.bueno.product.microservice.repository;
+package aug.bueno.product.microservice.unit.test.repository;
 
 import aug.bueno.product.microservice.domain.Product;
+import aug.bueno.product.microservice.repository.ProductRepository;
 import com.github.database.rider.core.api.connection.ConnectionHolder;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.junit5.DBUnitExtension;

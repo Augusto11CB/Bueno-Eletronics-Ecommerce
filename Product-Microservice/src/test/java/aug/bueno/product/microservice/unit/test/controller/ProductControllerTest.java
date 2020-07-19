@@ -1,4 +1,4 @@
-package aug.bueno.product.microservice.controller;
+package aug.bueno.product.microservice.unit.test.controller;
 
 import aug.bueno.product.microservice.domain.Product;
 import aug.bueno.product.microservice.domain.dto.ProductDTO;

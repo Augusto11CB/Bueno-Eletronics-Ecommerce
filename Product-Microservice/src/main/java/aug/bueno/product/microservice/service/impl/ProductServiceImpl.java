@@ -21,26 +21,31 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Optional<Product> findById(long id) {
-        return Optional.empty();
+        return repository.findById(id);
     }
 
     @Override
     public List<Product> findAll() {
-        return null;
+        return repository.findAll();
     }
 
     @Override
     public Product save(Product product) {
-        return null;
+
+        product.setVersion(1);
+
+        return repository.save(product);
     }
 
     @Override
     public boolean update(Product product) {
-        return false;
+
+        return repository.update(product);
     }
 
     @Override
     public boolean delete(long id) {
-        return false;
+
+        return repository.delete(id);
     }
 }
