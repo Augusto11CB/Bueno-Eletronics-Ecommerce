@@ -1,6 +1,6 @@
-package aug.bueno.repository;
+package aug.bueno.review.microservice.repository;
 
-import aug.bueno.domain.Review;
+import aug.bueno.review.microservice.domain.Review;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

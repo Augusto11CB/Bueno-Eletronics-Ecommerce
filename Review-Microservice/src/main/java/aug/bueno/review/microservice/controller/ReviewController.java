@@ -1,8 +1,8 @@
-package aug.bueno.controller;
+package aug.bueno.review.microservice.controller;
 
-import aug.bueno.domain.Review;
-import aug.bueno.domain.ReviewEntry;
-import aug.bueno.service.ReviewService;
+import aug.bueno.review.microservice.domain.Review;
+import aug.bueno.review.microservice.domain.ReviewEntry;
+import aug.bueno.review.microservice.service.ReviewService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;

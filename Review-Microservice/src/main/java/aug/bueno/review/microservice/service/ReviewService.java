@@ -1,6 +1,6 @@
-package aug.bueno.service;
+package aug.bueno.review.microservice.service;
 
-import aug.bueno.domain.Review;
+import aug.bueno.review.microservice.domain.Review;
 
 import java.util.List;
 import java.util.Optional;

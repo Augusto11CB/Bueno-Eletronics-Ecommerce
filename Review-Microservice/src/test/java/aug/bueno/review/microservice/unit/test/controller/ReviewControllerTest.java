@@ -1,8 +1,8 @@
-package aug.bueno.controller;
+package aug.bueno.review.microservice.unit.test.controller;
 
-import aug.bueno.domain.Review;
-import aug.bueno.domain.ReviewEntry;
-import aug.bueno.service.ReviewService;
+import aug.bueno.review.microservice.domain.Review;
+import aug.bueno.review.microservice.domain.ReviewEntry;
+import aug.bueno.review.microservice.service.ReviewService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

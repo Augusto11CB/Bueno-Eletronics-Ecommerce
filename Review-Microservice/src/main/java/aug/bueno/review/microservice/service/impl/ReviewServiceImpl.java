@@ -1,12 +1,14 @@
-package aug.bueno.service.impl;
+package aug.bueno.review.microservice.service.impl;
 
-import aug.bueno.domain.Review;
-import aug.bueno.repository.ReviewRepository;
-import aug.bueno.service.ReviewService;
+import aug.bueno.review.microservice.domain.Review;
+import aug.bueno.review.microservice.repository.ReviewRepository;
+import aug.bueno.review.microservice.service.ReviewService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ReviewServiceImpl implements ReviewService {
 
     private ReviewRepository reviewRepository;

@@ -1,9 +1,10 @@
-package aug.bueno.repository;
+package aug.bueno.review.microservice.unit.test.repository;
 
 import aug.bueno.custom.MongoDataFile;
 import aug.bueno.custom.junit.extension.MongoSpringCustomExtension;
-import aug.bueno.domain.Review;
-import aug.bueno.domain.ReviewEntry;
+import aug.bueno.review.microservice.domain.Review;
+import aug.bueno.review.microservice.domain.ReviewEntry;
+import aug.bueno.review.microservice.repository.ReviewRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

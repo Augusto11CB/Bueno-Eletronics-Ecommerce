@@ -1,4 +1,4 @@
-package aug.bueno.domain;
+package aug.bueno.review.microservice.domain;
 
 
 import lombok.AllArgsConstructor;

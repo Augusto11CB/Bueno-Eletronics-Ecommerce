@@ -1,7 +1,8 @@
-package aug.bueno.service;
+package aug.bueno.review.microservice.unit.test.service;
 
-import aug.bueno.domain.Review;
-import aug.bueno.domain.ReviewEntry;
+import aug.bueno.review.microservice.domain.Review;
+import aug.bueno.review.microservice.domain.ReviewEntry;
+import aug.bueno.review.microservice.service.ReviewService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
